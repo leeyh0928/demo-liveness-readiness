@@ -36,7 +36,7 @@ public class ControlPlaneController {
     public void onReadinessStateChanged(AvailabilityChangeEvent<ReadinessState> readiness) throws InterruptedException {
         log.info("Readiness state is changed to " + readiness.getState());
         if (ReadinessState.REFUSING_TRAFFIC == readiness.getState()) {
-            Thread.sleep(5000L);
+            Thread.sleep(15000L);
             AvailabilityChangeEvent.publish(eventPublisher, this, ReadinessState.ACCEPTING_TRAFFIC);
         }
     }
@@ -46,7 +46,7 @@ public class ControlPlaneController {
     public void onLivenessStateChanged(AvailabilityChangeEvent<LivenessState> liveness) throws InterruptedException {
         log.info("Liveness state is changed to " + liveness.getState());
         if (LivenessState.BROKEN == liveness.getState()) {
-            Thread.sleep(5000L);
+            Thread.sleep(20000L);
             AvailabilityChangeEvent.publish(eventPublisher, this, LivenessState.CORRECT);
         }
     }
