@@ -19,15 +19,15 @@ spec:
             - containerPort: 8080
           livenessProbe:
             httpGet:
-              port: 8080
-              path: /actuator/health/liveness
+              port: 8000
+              path: /api-monitor/health/liveness
             initialDelaySeconds: 10
             periodSeconds: 3
             failureThreshold: 2
           readinessProbe:
             httpGet:
-              port: 8080
-              path: /actuator/health/readiness
+              port: 8000
+              path: /api-monitor/health/readiness
             initialDelaySeconds: 10
             periodSeconds: 3
 ---
@@ -41,4 +41,4 @@ spec:
   type: LoadBalancer
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 8000
